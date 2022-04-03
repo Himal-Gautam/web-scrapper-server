@@ -1,6 +1,6 @@
 import express from "express";
 import "./db/mongoose.js";
-import "./scripts/scrapper.js";
+// import "./scripts/scrapper.js";
 
 import chalk from "chalk";
 import cors from "cors";
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(productRouter);
 
 app.get("/", async (req, res) => {
-  response.send("Hello World");
+  res.send("Hello World");
 });
 
 app.listen(port, () => {
