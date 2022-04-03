@@ -7,7 +7,6 @@ import cors from "cors";
 import "dotenv/config";
 
 import productRouter from "./routers/product.js";
-import { append } from "cheerio/lib/api/manipulation";
 
 const app = express();
 const port = process.env.PORT || 5000;

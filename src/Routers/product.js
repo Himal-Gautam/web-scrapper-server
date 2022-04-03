@@ -3,10 +3,9 @@ import Product from "../models/product.js";
 // import auth from '../middleware/auth.js'
 const router = new express.Router();
 
-router.post("/products", async (req, res) => {
-  const product = new Product(req.body);
+router.get("/products", async (req, res) => {
   try {
-    await product.save();
+    let product = await Product.find({})
     res.status(201).send(product);
   } catch (e) {
     res.status(400).send(e);
@@ -18,9 +17,9 @@ router.post("/products", async (req, res) => {
 router.post("/get-products", async (req, res) => {
   console.log(req.body)
   try {
-    const product = await Product.find({'name': { $regex: req.body.searchString , $options: 'i' }});
-    console.log(product)
-    res.status(201).send(product);
+    const product = await Product.find({'title': { $regex: req.body.searchString , $options: 'i' }});
+    console.log([...new Map(product.map((item) => [item["title"], item])).values(),])
+    res.status(201).send([...new Map(product.map((item) => [item["title"], item])).values(),]);
   } catch (e) {
     res.status(500).send(e);
   }

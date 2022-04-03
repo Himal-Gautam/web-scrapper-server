@@ -12,35 +12,46 @@ const fetchAmazonProducts = async () => {
 
     const $ = cheerio.load(html);
 
-    const shelves = [];
+    const products = [];
 
     $(
       "div.sg-col-4-of-12.s-result-item.s-asin.sg-col-4-of-16.sg-col.s-widget-spacing-small.sg-col-4-of-20"
     ).each((_idx, el) => {
-      const shelf = $(el);
-      const title = shelf.find('span.a-size-base-plus.a-color-base.a-text-normal').text()
-      const image = shelf.find('img.s-image').attr('src')
-      const stars = shelf.find('div.a-section.a-spacing-none.a-spacing-top-micro > div > span').attr('aria-label')
+      const item = $(el);
+      const title = item.find('span.a-size-base-plus.a-color-base.a-text-normal').text()
+      const image = item.find('img.s-image').attr('src')
+      const rating = parseInt(item.find('div.a-section.a-spacing-none.a-spacing-top-micro > div > span').attr('aria-label'))
+      const price = item.find('span.a-price.a-text-price > span.a-offscreen').text()
+      const finalPrice = item.find('span.a-price-whole').text()
 
-      const price = shelf.find('span.a-price > span.a-offscreen').text()
+      console.log(isNaN(rating))
 
       let element = {
         title,
         image,
-        stars,
-        price
+        rating,
+        price,
+        finalPrice
       };
 
-      shelves.push(element);
+      products.push(element);
     });
 
-    return shelves;
+    return products.filter((item) => !isNaN(item.rating));
   } catch (error) {
     throw error;
   }
 };
 
-fetchAmazonProducts().then((shelves) => console.log(shelves));
+fetchAmazonProducts().then((shelves) => {
+  console.log(shelves)
+    try {
+      Product.deleteMany({})
+      Product.insertMany(shelves);
+    } catch (e) {
+      console.log('not inserted')
+    }
+  });
 
 // const fetchFlipkartProducts = async () => {
 //     try {
