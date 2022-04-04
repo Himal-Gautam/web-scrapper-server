@@ -98,7 +98,6 @@ fetchAmazonProducts().then((products) => {
   //   console.log("FLIPKART")
   //   console.log(products)
   //     try {
-  //       Product.deleteMany({})
   //       Product.insertMany(products);
   //     } catch (e) {
   //       console.log('not inserted')

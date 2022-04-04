@@ -1,6 +1,6 @@
 import express from "express";
 import "./db/mongoose.js";
-// import "./scripts/scrapper.js";
+import "./scripts/scrapper.js";
 
 import chalk from "chalk";
 import cors from "cors";

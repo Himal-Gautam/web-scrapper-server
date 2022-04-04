@@ -42,17 +42,7 @@ router.post("/get-products", async (req, res) => {
 //   }
 
 //   try {
-//     await req.user
-//       .populate({
-//         path: "products",
-//         match,
-//         options: {
-//           limit: parseInt(req.query.limit),
-//           skip: parseInt(req.query.skip),
-//           sort,
-//         },
-//       })
-//       .execPopulate();
+//    
 //     res.send(products);
 //     console.log(products);
 //   } catch (e) {
