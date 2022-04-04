@@ -1,12 +1,12 @@
 import express from "express";
-import "./db/mongoose.js";
-import "./scripts/scrapper.js";
+import "./src/db/mongoose.js";
+import "./src/scripts/scrapper.js";
 
 import chalk from "chalk";
 import cors from "cors";
 import "dotenv/config";
 
-import productRouter from "./routers/product.js";
+import productRouter from "./src/routers/product.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
