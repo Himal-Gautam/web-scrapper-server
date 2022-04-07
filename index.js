@@ -6,7 +6,7 @@ import chalk from "chalk";
 import cors from "cors";
 import "dotenv/config";
 
-import productRouter from "./src/routers/product.js";
+import productRouter from "./src/Routers/product.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
