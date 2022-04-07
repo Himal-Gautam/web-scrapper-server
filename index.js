@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(productRouter);
 
 app.get("/", async (req, res) => {
-  res.send("Hello World");
+  res.send("Wellcome to Web Scrapper Server");
 });
 
 app.listen(port, () => {
